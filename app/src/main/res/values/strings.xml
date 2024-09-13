@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">appLibreria</string>
+    <string name="title">Librería</string>
+    <string name="idbook">Código Libro</string>
+    <string name="name">Nombre de libro</string>
+    <string name="coste">Precio</string>
+    <string name="available">Disponibilidad</string>
+    <string name="inputidbook">Ingrese el codigo del libro</string>
+    <string name="inputnamebook">Nombre del libro</string>
+    <string name="inputcostebook">Ingrese el precio $</string>
+</resources>
