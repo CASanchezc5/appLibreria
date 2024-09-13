@@ -56,22 +56,23 @@
         android:layout_height="48dp"
         android:hint="@string/inputnamebook"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:drawableEnd="@drawable/baseline_menu_book_24"/>
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/coste"
         android:textAlignment="center"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/etCosteBook"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:hint="@string/inputcostebook"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:drawableEnd="@drawable/baseline_attach_money_24"/>
 
     <!--Este spinner va la opcion de disponible o no diponible-->
     <Spinner
