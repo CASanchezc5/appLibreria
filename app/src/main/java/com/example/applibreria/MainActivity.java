@@ -3,6 +3,7 @@
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -58,6 +59,16 @@ import java.util.ArrayList;
         availableBook.setAdapter(adpAvailableBook);
 
         // Eventos de cada botón
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mCod = codeBook.getText().toString();
+                String mName = nameBook.getText().toString();
+                String mCoste = costeBook.getText().toString();
+                String mAvailable = availableBook.getSelectedItem().toString();
+                //Invocar un metodo para chequear que todos los datos esten diligenciados
+            }
+        });
 
 
 
@@ -70,18 +81,18 @@ import java.util.ArrayList;
     }
 
     // Encontrar Libro en una base de datos SQLite
-    private ArrayList<Book> searchCode(String mRef){
+    private ArrayList<Book> searchCode(String mCod){
         //Definir el ArrayList que se devolverá
         ArrayList<Book> arrBook = new ArrayList<Book>();
         //Generar objeto de la clase SQLiteDataBase en modo lectura
         SQLiteDatabase osdbRead = oDB.getReadableDatabase();
-        String query = "select nameBook, costeBook, availableBook from book where codeBook = '"+mRef+"' ";
+        String query = "select nameBook, costeBook, availableBook from book where codeBook = '"+mCod+"' ";
         //Generar una tabla cursor (es una tabla en memoria, para almacenar los registros enviados por un query
         Cursor cBook = osdbRead.rawQuery(query, null);
         //Verificar si la tabla cBook tiene al menos un registro
         if(cBook.moveToFirst()){
             //Llenar el objeto de Book
-            oBook.setCodeBook(mRef);
+            oBook.setCodeBook(mCod);
             oBook.setNameBook(cBook.getString(0));
             oBook.setCosteBook(cBook.getInt(1));
             oBook.setAvailableBook(cBook.getInt(2));
@@ -95,5 +106,14 @@ import java.util.ArrayList;
      //Validar la entrada de datos
      private boolean checkData(String mCod, String mName, String mCoste){
         return !mCod.isEmpty() && !mName.isEmpty() && !mCoste.isEmpty();
+     }
+
+     // Método para limpiar los campos después de guardar o buscar
+     private void clearFields() {
+         codeBook.setText("");
+         nameBook.setText("");
+         costeBook.setText("");
+         availableBook.setSelection(0);
+         message.setText("");
      }
 }
