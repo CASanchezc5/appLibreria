@@ -1,7 +1,9 @@
  package com.example.applibreria;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -59,6 +61,7 @@ import java.util.ArrayList;
         availableBook.setAdapter(adpAvailableBook);
 
         // Eventos de cada botón
+        //Boton Guardar
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +70,39 @@ import java.util.ArrayList;
                 String mCoste = costeBook.getText().toString();
                 String mAvailable = availableBook.getSelectedItem().toString();
                 //Invocar un metodo para chequear que todos los datos esten diligenciados
+                if (checkData(mCod,mName, mCoste)){
+                    //Buscar la referencia en la tabla book
+                    if (searchCode(codeBook.getText().toString()).size() == 0){
+                        // Guardar el libro
+                        // Crear objeto de SQLiteDatabase en modo escritura
+                        SQLiteDatabase osldbBook = oDB.getWritableDatabase();
+                        // Crear una tabla temporal con ContentValues con los mismos campos de la tabla book
+                        ContentValues cvBook = new ContentValues();
+                        cvBook.put("codeBook", mCod);
+                        cvBook.put("nameBook", mName);
+                        cvBook.put("costeBook", Integer.valueOf(mCoste));
+                        int mavailableBook = mAvailable.equals("Disponible") ? 0 : 1;
+                        cvBook.put("availableBook", mavailableBook);
+
+                        // Almacenar el nuevo libro
+                        osldbBook.insert("book", null, cvBook);
+                        message.setTextColor(Color.GREEN);
+                        message.setText("El libro se ha guardado correctamente");
+                        osldbBook.close();
+                        clearFields();
+                    }else {
+                        message.setTextColor(Color.RED);
+                        message.setText("La código EXISTE. Inténtelo con otra...");
+                    }
+                }else {
+                    message.setTextColor(Color.RED);
+                    message.setText("Debe diligenciar todos los datos del libro");
+                }
             }
         });
+
+
+        //Boton Buscar
 
 
 
@@ -99,7 +133,7 @@ import java.util.ArrayList;
             //Agregar el objeto al ArrayListe arrBook
             arrBook.add(oBook);
         }
-
+        cBook.close();
         return arrBook;
     }
 
