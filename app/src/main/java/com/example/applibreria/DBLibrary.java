@@ -11,7 +11,7 @@ public class DBLibrary extends SQLiteOpenHelper {
     // Definir la (s) variable (s) para la creación de las tablas
     String tblBook = "create table book(codeBook text, nameBook, costeBook integer, availableBook integer)";
 
-    public DBLibrary(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DBLibrary( Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
