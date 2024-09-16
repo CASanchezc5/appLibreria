@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">En este proyecto se  genero una aplicacion con Android Studio, y SQLite, con una base de datos llamada DBLibrary, y una tabla llamada book, a la cual tiene los campos: #idbook, name, coste, available. se agregan funcionalidad a botones de Guardar y Buscar.</p>
+<p align="left">En este proyecto se  genero una aplicacion con Android Studio, y SQLite, con una base de datos llamada DBLibrary, y una tabla llamada book, a la cual tiene los campos: #idbook(codeBook), name(nameBook), coste(costeBook), available(availableBook). se agregan funcionalidad a botones de Guardar y Buscar.</p>
 
 ###
 
