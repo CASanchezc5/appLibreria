@@ -1,5 +1,7 @@
  package com.example.applibreria;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,7 +15,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+ public class MainActivity extends AppCompatActivity {
     // Instanciar elementos del archivo xml
     EditText codeBook, nameBook, costeBook;
     TextView message;
@@ -54,5 +58,42 @@ public class MainActivity extends AppCompatActivity {
         availableBook.setAdapter(adpAvailableBook);
 
         // Eventos de cada botón
+
+
+
+
+
+
+
+
+
     }
+
+    // Encontrar Libro en una base de datos SQLite
+    private ArrayList<Book> searchCode(String mRef){
+        //Definir el ArrayList que se devolverá
+        ArrayList<Book> arrBook = new ArrayList<Book>();
+        //Generar objeto de la clase SQLiteDataBase en modo lectura
+        SQLiteDatabase osdbRead = oDB.getReadableDatabase();
+        String query = "select nameBook, costeBook, availableBook from book where codeBook = '"+mRef+"' ";
+        //Generar una tabla cursor (es una tabla en memoria, para almacenar los registros enviados por un query
+        Cursor cBook = osdbRead.rawQuery(query, null);
+        //Verificar si la tabla cBook tiene al menos un registro
+        if(cBook.moveToFirst()){
+            //Llenar el objeto de Book
+            oBook.setCodeBook(mRef);
+            oBook.setNameBook(cBook.getString(0));
+            oBook.setCosteBook(cBook.getInt(1));
+            oBook.setAvailableBook(cBook.getInt(2));
+            //Agregar el objeto al ArrayListe arrBook
+            arrBook.add(oBook);
+        }
+
+        return arrBook;
+    }
+
+     //Validar la entrada de datos
+     private boolean checkData(String mCod, String mName, String mCoste){
+        return !mCod.isEmpty() && !mName.isEmpty() && !mCoste.isEmpty();
+     }
 }
