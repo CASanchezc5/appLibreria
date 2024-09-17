@@ -70,9 +70,9 @@ import java.util.ArrayList;
                 String mCoste = costeBook.getText().toString();
                 String mAvailable = availableBook.getSelectedItem().toString();
                 //Invocar un metodo para chequear que todos los datos esten diligenciados
-                if (checkData(mCod,mName, mCoste)){
+                if (checkData(mCod, mName, mCoste)) {
                     //Buscar la referencia en la tabla book
-                    if (searchCode(codeBook.getText().toString()).size() == 0){
+                    if (searchCode(codeBook.getText().toString()).size() == 0) {
                         // Guardar el libro
                         // Crear objeto de SQLiteDatabase en modo escritura
                         SQLiteDatabase osldbBook = oDB.getWritableDatabase();
@@ -90,11 +90,11 @@ import java.util.ArrayList;
                         message.setText("El libro se ha guardado correctamente");
                         osldbBook.close();
                         clearFields();
-                    }else {
+                    } else {
                         message.setTextColor(Color.RED);
-                        message.setText("La código EXISTE. Inténtelo con otra...");
+                        message.setText("El libro ya EXISTE. Inténtelo con otro...");
                     }
-                }else {
+                } else {
                     message.setTextColor(Color.RED);
                     message.setText("Debe diligenciar todos los datos del libro");
                 }
@@ -103,16 +103,46 @@ import java.util.ArrayList;
 
 
         //Boton Buscar
-
-
-
-
-
-
-
-
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mCod = codeBook.getText().toString();
+                if (!mCod.isEmpty()) {
+                    if (searchCode(mCod).size() > 0) {
+                        // Recuperar los datos del objeto Book
+                        nameBook.setText(Book.getNameBook());
+                        costeBook.setText(String.valueOf(Book.getCosteBook()));
+                        switch (Book.getAvailableBook()) {
+                            case 0:
+                                availableBook.setSelection(0);
+                                break;
+                            case 1:
+                                availableBook.setSelection(1);
+                                break;
+                            case 2:
+                                availableBook.setSelection(2);
+                                break;
+                        }
+                    } else {
+                        message.setTextColor(Color.RED);
+                        message.setText("El libro NO EXISTE. Ingrese de nuevo el codigo...");
+                    }
+                } else {
+                    message.setTextColor(Color.RED);
+                    message.setText("Ingrese el codigo del libro que desea buscar");
+                }
+            }
+        });
 
     }
+
+
+
+
+
+
+
+
 
     // Encontrar Libro en una base de datos SQLite
     private ArrayList<Book> searchCode(String mCod){
