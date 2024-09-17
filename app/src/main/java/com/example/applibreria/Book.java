@@ -1,12 +1,12 @@
 package com.example.applibreria;
 
 public class Book {
-    private static String codeBook;
-    private static String nameBook;
-    private static int costeBook;
-    private static int availableBook;
+    private String codeBook;
+    private String nameBook;
+    private int costeBook;
+    private int availableBook;
 
-    public static String getCodeBook() {
+    public String getCodeBook() {
         return codeBook;
     }
 
@@ -14,7 +14,7 @@ public class Book {
         this.codeBook = codeBook;
     }
 
-    public static String getNameBook() {
+    public String getNameBook() {
         return nameBook;
     }
 
@@ -22,7 +22,7 @@ public class Book {
         this.nameBook = nameBook;
     }
 
-    public static int getCosteBook() {
+    public int getCosteBook() {
         return costeBook;
     }
 
@@ -30,7 +30,7 @@ public class Book {
         this.costeBook = costeBook;
     }
 
-    public static int getAvailableBook() {
+    public int getAvailableBook() {
         return availableBook;
     }
 

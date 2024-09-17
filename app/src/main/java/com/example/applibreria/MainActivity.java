@@ -102,25 +102,22 @@ import java.util.ArrayList;
         });
 
 
-        //Boton Buscar
+//Boton Buscar
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mCod = codeBook.getText().toString();
                 if (!mCod.isEmpty()) {
                     if (searchCode(mCod).size() > 0) {
-                        // Recuperar los datos del objeto Book
-                        nameBook.setText(Book.getNameBook());
-                        costeBook.setText(String.valueOf(Book.getCosteBook()));
-                        switch (Book.getAvailableBook()) {
+                        // Recuperar los datos del objeto oBook
+                        nameBook.setText(oBook.getNameBook());
+                        costeBook.setText(String.valueOf(oBook.getCosteBook()));
+                        switch (oBook.getAvailableBook()) {
                             case 0:
                                 availableBook.setSelection(0);
                                 break;
                             case 1:
                                 availableBook.setSelection(1);
-                                break;
-                            case 2:
-                                availableBook.setSelection(2);
                                 break;
                         }
                     } else {
@@ -133,17 +130,7 @@ import java.util.ArrayList;
                 }
             }
         });
-
     }
-
-
-
-
-
-
-
-
-
     // Encontrar Libro en una base de datos SQLite
     private ArrayList<Book> searchCode(String mCod){
         //Definir el ArrayList que se devolverá
