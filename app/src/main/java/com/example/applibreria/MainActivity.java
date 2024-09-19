@@ -33,7 +33,7 @@ import java.util.ArrayList;
     // Instanciar la clase de sqlite
     DBLibrary oDB = new DBLibrary(this, "dbInventory", null, 1);
 
-    // Generar el objeto de Product
+    // Generar el objeto de Book
     Book oBook = new Book();
 
     @Override
