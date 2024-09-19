@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 public class DBLibrary extends SQLiteOpenHelper {
 
     // Definir la (s) variable (s) para la creación de las tablas
-    String tblBook = "create table book(codeBook text, nameBook, costeBook integer, availableBook integer)";
+    String tblBook = "create table book(codeBook text, nameBook text, costeBook integer, availableBook integer)";
 
     public DBLibrary( Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
