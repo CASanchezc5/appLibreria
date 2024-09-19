@@ -89,7 +89,13 @@ import java.util.ArrayList;
                         message.setTextColor(Color.GREEN);
                         message.setText("El libro se ha guardado correctamente");
                         osldbBook.close();
-                        clearFields();
+                        // Usamos un Handler para retrasar la limpieza de los campos
+                        new android.os.Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                clearFields(); // Limpia los campos después de 1 segundo
+                            }
+                        }, 1000); // 2000 milisegundos = 1 segundo
                     } else {
                         message.setTextColor(Color.RED);
                         message.setText("El libro ya EXISTE. Inténtelo con otro...");
