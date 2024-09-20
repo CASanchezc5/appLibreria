@@ -2,4 +2,5 @@
 <resources>
     <color name="firstColor">#6EACDA</color>
     <color name="secundaryColor">#F2EFE5</color>
+    <color name="backtextColor">#ECDFCC</color>
 </resources>

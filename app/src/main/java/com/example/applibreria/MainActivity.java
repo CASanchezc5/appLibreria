@@ -97,7 +97,7 @@ import java.util.ArrayList;
                             }
                         }, 1000); // 2000 milisegundos = 1 segundo
                     } else {
-                        message.setTextColor(Color.RED);
+                        message.setTextColor(Color.BLUE);
                         message.setText("El libro ya EXISTE. Inténtelo con otro...");
                     }
                 } else {
